@@ -1,0 +1,41 @@
+# Here you can define all your data sets by using simple YAML syntax.
+#
+# Documentation for this file format can be found in "The Data Catalog"
+# Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+DBAASP_complete:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/DBAASP_complete.csv
+
+hemolytik_raw_data:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/hemolytik_raw_data.csv
+
+DADP_data:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/DADP_data.csv
+
+DRAMP_raw:
+  type: pandas.ExcelDataSet
+  filepath: data/01_raw/general_amps.xlsx
+  load_args:
+    sheet_name: general_amps
+
+processed_hemolytik:
+  type: pandas.ParquetDataSet
+  filepath: data/02_intermediate/processed_hemolytik.pq
+
+preprocessed_DRAMP:
+  type: pandas.ParquetDataSet
+  filepath: data/02_intermediate/preprocessed_DRAMP.pq
+
+preprocessed_DBAASP:
+  type: pandas.ParquetDataSet
+  filepath: data/02_intermediate/preprocessed_DBAASP.pq
+
+data_complete:
+  type: pandas.ParquetDataSet
+  filepath: data/03_primary/data_complete.pq
+  save_args:
+    index: None
+
+
