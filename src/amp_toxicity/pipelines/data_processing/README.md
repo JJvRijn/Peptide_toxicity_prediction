@@ -1,21 +1,17 @@
 # Pipeline data_processing
 
-> *Note:* This is a `README.md` boilerplate generated using `Kedro 0.18.7`.
-
 ## Overview
 
-<!---
-Please describe your modular pipeline here.
--->
+This pipeline processes the data of several publicly availible databases containing hemolytic activity values for peptides.
+After the data is often converted from a string sentence containing the info, and always end in a %float of activity at a micromolar float for the concentration.
+
 
 ## Pipeline inputs
-
-<!---
-The list of pipeline inputs.
--->
+Hemolytik formated data
+DBAASP formated data
+DRAMP formated data
+DADP formated data
 
 ## Pipeline outputs
+single datafram containing all the combined values with the source of their data.
 
-<!---
-The list of pipeline outputs.
--->
