@@ -64,7 +64,7 @@ def Scraping_DBAASP (input_excel_location,cell_types ="human", remove_unnatural=
     if remove_unnatural is True:
         #remove unnatural Amino acids
         NAA = ["A", "R", "N", "D", "C", "Q", "E", "G", "H", "I", "L", "K", "M", "F", "P", "S",
-               "T", "W", "Y", "V", " "]
+               "T", "W", "Y", "V", ]
         unvalid =[]
         for j in DBAASP_usefull.index:
             if (not all ([NAA_seq in NAA for NAA_seq in DBAASP_usefull.SEQUENCE[j]])):
@@ -94,11 +94,12 @@ def Scraping_DBAASP (input_excel_location,cell_types ="human", remove_unnatural=
         mask2 = ~mask
         DBAASP_usefull.loc[mask2, "CONCENTRATION_µM"] = DBAASP_usefull["conc_num"][mask2].astype(float)
         DBAASP_usefull = DBAASP_usefull.reset_index(drop=True)
-        #DBAASP_usefull = DBAASP_usefull.rename({"Lysis_value":"hem_activity"})
-        DBAASP_final = DBAASP_usefull[["ID", "SEQUENCE", "hem_activity", "CONCENTRATION_µM"]]
+        DBAASP_usefull = DBAASP_usefull.rename(columns ={"Lysis_value":"hem_activity", "SEQUENCE":"seq"})
+        DBAASP_final = DBAASP_usefull[["ID", "seq", "hem_activity", "CONCENTRATION_µM"]]
         return DBAASP_final
     else:
-        DBAASP_final = DBAASP_usefull[["ID", "SEQUENCE", "hem_activity", "conc_num", "HEMOLITIC CYTOTOXIC ACTIVITY - UNIT"]]
+        DBAASP_usefull = DBAASP_usefull.rename(columns = {"Lysis_value":"hem_activity", "SEQUENCE":"seq"})
+        DBAASP_final = DBAASP_usefull[["ID", "seq", "hem_activity", "conc_num", "HEMOLITIC CYTOTOXIC ACTIVITY - UNIT"]]
         return DBAASP_final
 
 def Scraping_DRAMP (input_excel_location, remove_unnatural=True,) -> pd.DataFrame:
@@ -212,7 +213,7 @@ def Scraping_DRAMP (input_excel_location, remove_unnatural=True,) -> pd.DataFram
     #remove the unnatural AA or return current info
     if remove_unnatural is True:
         NAA = ["A", "R", "N", "D", "C", "Q", "E", "G", "H", "I", "L", "K", "M", "F", "P", "S",
-               "T", "W", "Y", "V", " "]
+               "T", "W", "Y", "V", ]
         unvalid =[]
         for j in df_DRAMP.index:
             if (not all ([NAA_seq in NAA for NAA_seq in df_DRAMP.seq[j]])):
@@ -364,4 +365,5 @@ def concat_w_source(*args )-> pd.DataFrame:
     b = [get_var_name(el) for el in objs]
     for i in range(len(objs)):
         objs[i]["source"] = b[i]
-    return pd.concat(objs, ignore_index=True).astype({'ID':str, 'CONCENTRATION_µM':float})
+    concatted = pd.concat(objs, ignore_index=True).astype({'ID':str, 'CONCENTRATION_µM':float})
+    return concatted[["ID", "seq", "hem_activity", 	"CONCENTRATION_µM",]]
