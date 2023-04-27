@@ -35,7 +35,60 @@ preprocessed_DBAASP:
 data_complete:
   type: pandas.ParquetDataSet
   filepath: data/03_primary/data_complete.pq
-  save_args:
-    index: None
+
+AAC_features:
+  type: pandas.ParquetDataSet
+  filepath: data/04_feature/AAC_features.pq
+
+DAAC_features:
+  type: pandas.ParquetDataSet
+  filepath: data/04_feature/DAAC_features.pq
+
+MAAC_features:
+  type: pandas.ParquetDataSet
+  filepath: data/04_feature/MAAC_features.pq
+
+Compact_fingerprint_features:
+  type: pandas.ParquetDataSet
+  filepath: data/04_feature/Compact_fingerprint_features.pq
+
+BLOSUM_matrix:
+  type: pandas.ParquetDataSet
+  filepath: data/04_feature/BLOSUM_matrix.pq
+
+AA_distribution_features:
+  type: pandas.ParquetDataSet
+  filepath: data/04_feature/AA_distribution_features.pq
+
+combined_features:
+  type: pandas.ParquetDataSet
+  filepath: data/05_model_input/combined_feat.pq
+
+Labeled_data_v2:
+  type: pandas.ParquetDataSet
+  filepath: data/05_model_input/Labels.pq
+
+KMean_train_feat:
+  type: pandas.ParquetDataSet
+  filepath: data/05_model_input/KMean_train_feat.pq
+
+KMean_test_feat:
+  type: pandas.ParquetDataSet
+  filepath: data/05_model_input/KMean_test_feat.pq
+
+Kmean_train_labels:
+  type: pandas.ParquetDataSet
+  filepath: data/05_model_input/KMean_train_labels.pq
+
+Kmean_test_labels:
+  type: pandas.ParquetDataSet
+  filepath: data/05_model_input/KMean_test_labels.pq
+
+n_feat_graph:
+  type: matplotlib.MatplotlibWriter
+  filepath: data/08_reporting/n_feat_graph.png
+  versioned: true
+
+
 
 

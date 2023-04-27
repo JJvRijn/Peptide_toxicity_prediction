@@ -365,5 +365,5 @@ def concat_w_source(*args )-> pd.DataFrame:
     b = [get_var_name(el) for el in objs]
     for i in range(len(objs)):
         objs[i]["source"] = b[i]
-    concatted = pd.concat(objs, ignore_index=True).astype({'ID':str, 'CONCENTRATION_µM':float})
+    concatted = pd.concat(objs, ignore_index=True).astype({'ID':str, 'CONCENTRATION_µM':float, "hem_activity":float})
     return concatted[["ID", "seq", "hem_activity", 	"CONCENTRATION_µM",]]
